@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MyRectangle = NA_0lab.Models.Rectangle;
 
 namespace NA_0lab
 {
@@ -65,6 +66,61 @@ namespace NA_0lab
             Scene.Children.Add(line3);
         }
 
+        private void DrawRectangle(MyRectangle rectangle)
+        {
+            Scene.Children.Clear();
+
+            var p1 = rectangle.TopLeft;
+            var p2 = rectangle.TopRight;
+            var p3 = rectangle.BottomRight;
+            var p4 = rectangle.BottomLeft;
+
+            var line1 = new Line
+            {
+                X1 = p1.X,
+                Y1 = p1.Y,
+                X2 = p2.X,
+                Y2 = p2.Y,
+                Stroke = Brushes.Blue,
+                StrokeThickness = 2
+            };
+
+            var line2 = new Line
+            {
+                X1 = p2.X,
+                Y1 = p2.Y,
+                X2 = p3.X,
+                Y2 = p3.Y,
+                Stroke = Brushes.Blue,
+                StrokeThickness = 2
+            };
+
+            var line3 = new Line
+            {
+                X1 = p3.X,
+                Y1 = p3.Y,
+                X2 = p4.X,
+                Y2 = p4.Y,
+                Stroke = Brushes.Blue,
+                StrokeThickness = 2
+            };
+
+            var line4 = new Line
+            {
+                X1 = p4.X,
+                Y1 = p4.Y,
+                X2 = p1.X,
+                Y2 = p1.Y,
+                Stroke = Brushes.Black,
+                StrokeThickness = 2
+            };
+
+            Scene.Children.Add(line1);
+            Scene.Children.Add(line2);
+            Scene.Children.Add(line3);
+            Scene.Children.Add(line4);
+        }
+
         private void DrawTriangleButton_Click(object sender, RoutedEventArgs e)
         {
             // Создаем три точки
@@ -77,6 +133,14 @@ namespace NA_0lab
 
             // Рисуем его
             DrawTriangle(triangle);
+        }
+
+        private void DrawRectangleButton_Click(object sender, RoutedEventArgs e)
+        {
+            var topLeft = new Point2D(100, 100);
+            var rectangle = new MyRectangle(topLeft, 150, 100);
+
+            DrawRectangle(rectangle);
         }
     }
 }

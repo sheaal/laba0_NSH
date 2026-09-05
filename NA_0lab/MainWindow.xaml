@@ -25,6 +25,16 @@
         Background="#B3E5FC"
         Click="DrawTriangleButton_Click"/>
 
+        <Button x:Name="DrawRectangleButton" 
+        Content="Нарисовать прямоугольник" 
+        Width="180" 
+        Height="30" 
+        Margin="350,10,0,0" 
+        HorizontalAlignment="Left" 
+        VerticalAlignment="Top" 
+        Background="#B3E5FC"
+        Click="DrawRectangleButton_Click"/>
+
     </Grid>
 
 
