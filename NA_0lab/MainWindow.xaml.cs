@@ -66,6 +66,26 @@ namespace NA_0lab
             Scene.Children.Add(line3);
         }
 
+        private void RandomTriangleButton_Click(object sender, RoutedEventArgs e)
+        {
+            var random = new Random();
+
+            // координаты от 50 до 350
+            int x1 = random.Next(50, 350);
+            int y1 = random.Next(50, 300);
+            int x2 = random.Next(50, 350);
+            int y2 = random.Next(50, 300);
+            int x3 = random.Next(50, 350);
+            int y3 = random.Next(50, 300);
+
+            var p1 = new Point2D(x1, y1);
+            var p2 = new Point2D(x2, y2);
+            var p3 = new Point2D(x3, y3);
+
+            var triangle = new Triangle(p1, p2, p3);
+            DrawTriangle(triangle);
+        }
+
         private void DrawRectangle(MyRectangle rectangle)
         {
             Scene.Children.Clear();
@@ -111,7 +131,7 @@ namespace NA_0lab
                 Y1 = p4.Y,
                 X2 = p1.X,
                 Y2 = p1.Y,
-                Stroke = Brushes.Black,
+                Stroke = Brushes.Blue,
                 StrokeThickness = 2
             };
 
