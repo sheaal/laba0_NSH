@@ -7,7 +7,25 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Canvas x:Name="Scene" HorizontalAlignment="Left" Height="400" Margin="15,0,0,0"
-        VerticalAlignment="Center" Width="680"/>
+        <Canvas x:Name="Scene" 
+                HorizontalAlignment="Left" 
+                Height="400" 
+                Margin="15,0,0,0" 
+                VerticalAlignment="Center" 
+                Width="680" 
+                Background="White"/>
+
+        <Button x:Name="DrawTriangleButton" 
+        Content="Нарисовать треугольник" 
+        Width="150" 
+        Height="30" 
+        Margin="15,10,0,0" 
+        HorizontalAlignment="Left" 
+        VerticalAlignment="Top" 
+        Background="#B3E5FC"
+        Click="DrawTriangleButton_Click"/>
+
     </Grid>
+
+
 </Window>

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using NA_0lab.Models;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -14,26 +15,68 @@ namespace NA_0lab
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public class Point2D
+    public partial class MainWindow : Window
     {
-        //Свойства класса — чтение снаружи, изменение только изнутри класса
-        public int X { get; private set; }
-        public int Y { get; private set; }
-        //Конструктор класса
-        public Point2D(int x, int y)
+        public MainWindow()
         {
-            X = x;
-            Y = y;
+            InitializeComponent();
+
         }
-        //Методы для изменения координат (смещение на заданную величину,
-        //а не просто присваивание — поэтому это методы, а не сеттер свойства)
-        public void AddX(int x)
+
+        private void DrawTriangle(Triangle triangle)
         {
-            X += x;
+            // Очищаем холст, если нужно
+            Scene.Children.Clear();
+
+            // Создаем линии между точками
+            var line1 = new Line
+            {
+                X1 = triangle.P1.X,
+                Y1 = triangle.P1.Y,
+                X2 = triangle.P2.X,
+                Y2 = triangle.P2.Y,
+                Stroke = Brushes.Blue,
+                StrokeThickness = 2
+            };
+
+            var line2 = new Line
+            {
+                X1 = triangle.P2.X,
+                Y1 = triangle.P2.Y,
+                X2 = triangle.P3.X,
+                Y2 = triangle.P3.Y,
+                Stroke = Brushes.Blue,
+                StrokeThickness = 2
+            };
+
+            var line3 = new Line
+            {
+                X1 = triangle.P3.X,
+                Y1 = triangle.P3.Y,
+                X2 = triangle.P1.X,
+                Y2 = triangle.P1.Y,
+                Stroke = Brushes.Blue,
+                StrokeThickness = 2
+            };
+
+            // Добавляем линии на холст
+            Scene.Children.Add(line1);
+            Scene.Children.Add(line2);
+            Scene.Children.Add(line3);
         }
-        public void AddY(int y)
+
+        private void DrawTriangleButton_Click(object sender, RoutedEventArgs e)
         {
-            Y += y;
+            // Создаем три точки
+            var p1 = new Point2D(100, 100);
+            var p2 = new Point2D(200, 100);
+            var p3 = new Point2D(150, 200);
+
+            // Создаем треугольник
+            var triangle = new Triangle(p1, p2, p3);
+
+            // Рисуем его
+            DrawTriangle(triangle);
         }
     }
 }
