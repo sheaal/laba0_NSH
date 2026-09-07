@@ -9,7 +9,7 @@ namespace NA_0lab.Models
     public class Rectangle
     {
         // Свойства класса
-        public Point2D TopLeft { get; private set; }  // Верхняя левая точка
+        public Point2D TopLeft { get; private set; }
         public int Width { get; private set; }
         public int Height { get; private set; }
 

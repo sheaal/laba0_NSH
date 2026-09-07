@@ -5,47 +5,97 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NA_0lab"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Canvas x:Name="Scene" 
-                HorizontalAlignment="Left" 
-                Height="400" 
-                Margin="15,0,0,0" 
-                VerticalAlignment="Center" 
-                Width="680" 
-                Background="White"/>
+        Title="А можно я пойду домой?" 
+        Height="550" 
+        Width="800"
+        WindowStartupLocation="CenterScreen">
+    
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <Button x:Name="DrawTriangleButton" 
-        Content="Нарисовать треугольник" 
-        Width="150" 
-        Height="30" 
-        Margin="15,10,0,0" 
-        HorizontalAlignment="Left" 
-        VerticalAlignment="Top" 
-        Background="#B3E5FC"
-        Click="DrawTriangleButton_Click"/>
+        <WrapPanel Grid.Row="0" Margin="0,0,0,10">
+            <Button x:Name="DrawTriangleButton" 
+                    Content="Треугольник" 
+                    Width="100" Height="30" Margin="0,0,5,5"
+                    Background="#B3E5FC" 
+                    Click="DrawTriangleButton_Click"/>
+            
+            <Button x:Name="RandomTriangleButton" 
+                    Content="Рандом треугольник" 
+                    Width="140" Height="30" Margin="0,0,5,5"
+                    Background="#B3E5FC" 
+                    Click="RandomTriangleButton_Click"/>
+            
+            <Button x:Name="DrawRectangleButton" 
+                    Content="Прямоугольник" 
+                    Width="110" Height="30" Margin="0,0,5,5"
+                    Background="#B3E5FC" 
+                    Click="DrawRectangleButton_Click"/>
+            
+            <Button x:Name="DrawSquareButton" 
+                    Content="Квадрат" 
+                    Width="90" Height="30" Margin="0,0,5,5"
+                    Background="#B3E5FC" 
+                    Click="DrawSquareButton_Click"/>
+        </WrapPanel>
 
-        <Button x:Name="RandomTriangleButton" 
-        Content="Рандом треугольник" 
-        Width="160" 
-        Height="30" 
-        Margin="200,10,0,0" 
-        HorizontalAlignment="Left" 
-        VerticalAlignment="Top" 
-        Background="#B3E5FC"
-        Click="RandomTriangleButton_Click"/>
+        <Border Grid.Row="1" 
+                BorderBrush="#283593" 
+                BorderThickness="2" 
+                CornerRadius="5"
+                Background="White">
+            <Canvas x:Name="Scene" 
+                    Height="350" 
+                    Width="750"
+                    Background="White"/>
+        </Border>
 
-        <Button x:Name="DrawRectangleButton" 
-        Content="Нарисовать прямоугольник" 
-        Width="180" 
-        Height="30" 
-        Margin="400,10,0,0" 
-        HorizontalAlignment="Left" 
-        VerticalAlignment="Top" 
-        Background="#B3E5FC"
-        Click="DrawRectangleButton_Click"/>
+        <StackPanel Grid.Row="2" Margin="0,10,0,0">
+            <TextBlock Text="Введите координаты для треугольника" 
+                       FontWeight="Bold" 
+                       FontSize="12" 
+                       Margin="0,0,0,5"/>
 
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="P1:" FontWeight="Bold" Margin="0,0,5,0"/>
+                <TextBox x:Name="P1X" Grid.Column="1" Width="45" Text="100" Margin="0,0,5,0"/>
+                <TextBox x:Name="P1Y" Grid.Column="2" Width="45" Text="100" Margin="0,0,15,0"/>
+
+                <TextBlock Grid.Column="3" Text="P2:" FontWeight="Bold" Margin="0,0,5,0"/>
+                <TextBox x:Name="P2X" Grid.Column="4" Width="45" Text="200" Margin="0,0,5,0"/>
+                <TextBox x:Name="P2Y" Grid.Column="5" Width="45" Text="100" Margin="0,0,15,0"/>
+
+                <TextBlock Grid.Column="6" Text="P3:" FontWeight="Bold" Margin="0,0,5,0"/>
+                <TextBox x:Name="P3X" Grid.Column="7" Width="45" Text="150" Margin="0,0,5,0"/>
+                <TextBox x:Name="P3Y" Grid.Column="8" Width="45" Text="200" Margin="0,0,15,0"/>
+
+                <Button x:Name="DrawUserTriangleButton" 
+                        Grid.Column="9"
+                        Content="Нарисовать" 
+                        Width="100" Height="25"
+                        Background="#C5CAE9"
+                        Click="DrawUserTriangleButton_Click"/>
+            </Grid>
+            
+           
+        </StackPanel>
     </Grid>
-
-
 </Window>

@@ -26,7 +26,6 @@ namespace NA_0lab
 
         private void DrawTriangle(Triangle triangle)
         {
-            // Очищаем холст, если нужно
             Scene.Children.Clear();
 
             // Создаем линии между точками
@@ -60,7 +59,6 @@ namespace NA_0lab
                 StrokeThickness = 2
             };
 
-            // Добавляем линии на холст
             Scene.Children.Add(line1);
             Scene.Children.Add(line2);
             Scene.Children.Add(line3);
@@ -70,7 +68,6 @@ namespace NA_0lab
         {
             var random = new Random();
 
-            // координаты от 50 до 350
             int x1 = random.Next(50, 350);
             int y1 = random.Next(50, 300);
             int x2 = random.Next(50, 350);
@@ -141,17 +138,39 @@ namespace NA_0lab
             Scene.Children.Add(line4);
         }
 
+        private void DrawUserTriangleButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Считываем координаты из текстовых полей
+                int x1 = int.Parse(P1X.Text);
+                int y1 = int.Parse(P1Y.Text);
+                int x2 = int.Parse(P2X.Text);
+                int y2 = int.Parse(P2Y.Text);
+                int x3 = int.Parse(P3X.Text);
+                int y3 = int.Parse(P3Y.Text);
+
+                var p1 = new Point2D(x1, y1);
+                var p2 = new Point2D(x2, y2);
+                var p3 = new Point2D(x3, y3);
+
+                var triangle = new Triangle(p1, p2, p3);
+                DrawTriangle(triangle);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Введите корректные числа в поля координат!", "Ты инвалид", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
         private void DrawTriangleButton_Click(object sender, RoutedEventArgs e)
         {
-            // Создаем три точки
             var p1 = new Point2D(100, 100);
             var p2 = new Point2D(200, 100);
             var p3 = new Point2D(150, 200);
 
-            // Создаем треугольник
             var triangle = new Triangle(p1, p2, p3);
 
-            // Рисуем его
             DrawTriangle(triangle);
         }
 
@@ -161,6 +180,22 @@ namespace NA_0lab
             var rectangle = new MyRectangle(topLeft, 150, 100);
 
             DrawRectangle(rectangle);
+        }
+
+        private void DrawSquareButton_Click(object sender, RoutedEventArgs e)
+        {
+            var random = new Random();
+
+            // Случайная начальная точка
+            int x = random.Next(50, 300);
+            int y = random.Next(50, 200);
+
+            int side = random.Next(30, 150);
+
+            var topLeft = new Point2D(x, y);
+            var square = new MyRectangle(topLeft, side, side);
+
+            DrawRectangle(square);
         }
     }
 }
