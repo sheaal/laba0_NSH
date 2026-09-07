@@ -41,6 +41,15 @@
                     Width="90" Height="30" Margin="0,0,5,5"
                     Background="#B3E5FC" 
                     Click="DrawSquareButton_Click"/>
+                    
+                    <Rectangle Width="2" Fill="Gray" Margin="15,0,15,0"/>
+
+                    <TextBlock Text="Перемещение:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                    <Button x:Name="MoveLeftButton" Content="←" Width="30" Height="30" Click="MoveLeftButton_Click"/>
+                    <Button x:Name="MoveRightButton" Content="→" Width="30" Height="30" Click="MoveRightButton_Click"/>
+                    <Button x:Name="MoveUpButton" Content="↑" Width="30" Height="30" Click="MoveUpButton_Click"/>
+                    <Button x:Name="MoveDownButton" Content="↓" Width="30" Height="30" Click="MoveDownButton_Click"/>
+
         </WrapPanel>
 
         <Border Grid.Row="1" 

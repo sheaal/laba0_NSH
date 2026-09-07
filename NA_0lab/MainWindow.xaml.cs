@@ -13,22 +13,21 @@ using MyRectangle = NA_0lab.Models.Rectangle;
 
 namespace NA_0lab
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        // Хранение текущей фигуры
+        private Triangle _currentTriangle;
+        private MyRectangle _currentRectangle;
+        private bool _isTriangle = true;
         public MainWindow()
         {
             InitializeComponent();
-
         }
 
         private void DrawTriangle(Triangle triangle)
         {
             Scene.Children.Clear();
 
-            // Создаем линии между точками
             var line1 = new Line
             {
                 X1 = triangle.P1.X,
@@ -67,20 +66,13 @@ namespace NA_0lab
         private void RandomTriangleButton_Click(object sender, RoutedEventArgs e)
         {
             var random = new Random();
-
-            int x1 = random.Next(50, 350);
-            int y1 = random.Next(50, 300);
-            int x2 = random.Next(50, 350);
-            int y2 = random.Next(50, 300);
-            int x3 = random.Next(50, 350);
-            int y3 = random.Next(50, 300);
-
-            var p1 = new Point2D(x1, y1);
-            var p2 = new Point2D(x2, y2);
-            var p3 = new Point2D(x3, y3);
-
-            var triangle = new Triangle(p1, p2, p3);
-            DrawTriangle(triangle);
+            _currentTriangle = new Triangle(
+                new Point2D(random.Next(50, 350), random.Next(50, 300)),
+                new Point2D(random.Next(50, 350), random.Next(50, 300)),
+                new Point2D(random.Next(50, 350), random.Next(50, 300))
+            );
+            _isTriangle = true;
+            DrawTriangle(_currentTriangle);
         }
 
         private void DrawRectangle(MyRectangle rectangle)
@@ -142,20 +134,13 @@ namespace NA_0lab
         {
             try
             {
-                // Считываем координаты из текстовых полей
-                int x1 = int.Parse(P1X.Text);
-                int y1 = int.Parse(P1Y.Text);
-                int x2 = int.Parse(P2X.Text);
-                int y2 = int.Parse(P2Y.Text);
-                int x3 = int.Parse(P3X.Text);
-                int y3 = int.Parse(P3Y.Text);
-
-                var p1 = new Point2D(x1, y1);
-                var p2 = new Point2D(x2, y2);
-                var p3 = new Point2D(x3, y3);
-
-                var triangle = new Triangle(p1, p2, p3);
-                DrawTriangle(triangle);
+                _currentTriangle = new Triangle(
+                    new Point2D(int.Parse(P1X.Text), int.Parse(P1Y.Text)),
+                    new Point2D(int.Parse(P2X.Text), int.Parse(P2Y.Text)),
+                    new Point2D(int.Parse(P3X.Text), int.Parse(P3Y.Text))
+                );
+                _isTriangle = true;
+                DrawTriangle(_currentTriangle);
             }
             catch (FormatException)
             {
@@ -165,37 +150,69 @@ namespace NA_0lab
 
         private void DrawTriangleButton_Click(object sender, RoutedEventArgs e)
         {
-            var p1 = new Point2D(100, 100);
-            var p2 = new Point2D(200, 100);
-            var p3 = new Point2D(150, 200);
-
-            var triangle = new Triangle(p1, p2, p3);
-
-            DrawTriangle(triangle);
+            _currentTriangle = new Triangle(
+                new Point2D(100, 100),
+                new Point2D(200, 100),
+                new Point2D(150, 200)
+            );
+            _isTriangle = true;
+            DrawTriangle(_currentTriangle);
         }
 
         private void DrawRectangleButton_Click(object sender, RoutedEventArgs e)
         {
-            var topLeft = new Point2D(100, 100);
-            var rectangle = new MyRectangle(topLeft, 150, 100);
-
-            DrawRectangle(rectangle);
+            _currentRectangle = new MyRectangle(new Point2D(100, 100), 150, 100);
+            _isTriangle = false;
+            DrawRectangle(_currentRectangle);
         }
 
         private void DrawSquareButton_Click(object sender, RoutedEventArgs e)
         {
             var random = new Random();
-
-            // Случайная начальная точка
-            int x = random.Next(50, 300);
-            int y = random.Next(50, 200);
-
             int side = random.Next(30, 150);
 
-            var topLeft = new Point2D(x, y);
-            var square = new MyRectangle(topLeft, side, side);
+            _currentRectangle = new MyRectangle(
+                new Point2D(random.Next(50, 300), random.Next(50, 200)),
+                side, side
+            );
+            _isTriangle = false;
+            DrawRectangle(_currentRectangle);
+        }
 
-            DrawRectangle(square);
+        private void MoveLeftButton_Click(object sender, RoutedEventArgs e)
+        {
+            MoveShape(-10, 0);
+        }
+
+        private void MoveRightButton_Click(object sender, RoutedEventArgs e)
+        {
+            MoveShape(10, 0);
+        }
+
+        private void MoveUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            MoveShape(0, -10);
+        }
+
+        private void MoveDownButton_Click(object sender, RoutedEventArgs e)
+        {
+            MoveShape(0, 10);
+        }
+
+        private void MoveShape(int deltaX, int deltaY)
+        {
+            if (_isTriangle && _currentTriangle != null)
+            {
+                _currentTriangle.AddX(deltaX);
+                _currentTriangle.AddY(deltaY);
+                DrawTriangle(_currentTriangle);
+            }
+            else if (!_isTriangle && _currentRectangle != null)
+            {
+                _currentRectangle.AddX(deltaX);
+                _currentRectangle.AddY(deltaY);
+                DrawRectangle(_currentRectangle);
+            }
         }
     }
 }
