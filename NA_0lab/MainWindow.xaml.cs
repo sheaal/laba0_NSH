@@ -214,5 +214,29 @@ namespace NA_0lab
                 DrawRectangle(_currentRectangle);
             }
         }
+
+        private void MoveXSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            MoveXValue.Text = MoveXSlider.Value.ToString("0");
+
+            int deltaX = (int)(e.NewValue - e.OldValue);
+
+            if (deltaX != 0)
+            {
+                MoveShape(deltaX, 0);
+            }
+        }
+
+        private void MoveYSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            MoveYValue.Text = MoveYSlider.Value.ToString("0");
+
+            int deltaY = (int)(e.NewValue - e.OldValue);
+
+            if (deltaY != 0)
+            {
+                MoveShape(0, deltaY);
+            }
+        }
     }
 }

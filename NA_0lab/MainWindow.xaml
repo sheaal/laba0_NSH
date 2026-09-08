@@ -44,11 +44,25 @@
                     
                     <Rectangle Width="2" Fill="Gray" Margin="15,0,15,0"/>
 
-                    <TextBlock Text="Перемещение:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                    <Button x:Name="MoveLeftButton" Content="←" Width="30" Height="30" Click="MoveLeftButton_Click"/>
-                    <Button x:Name="MoveRightButton" Content="→" Width="30" Height="30" Click="MoveRightButton_Click"/>
-                    <Button x:Name="MoveUpButton" Content="↑" Width="30" Height="30" Click="MoveUpButton_Click"/>
-                    <Button x:Name="MoveDownButton" Content="↓" Width="30" Height="30" Click="MoveDownButton_Click"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="X:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <Slider x:Name="MoveXSlider" 
+                                Width="100" 
+                                Minimum="-100" 
+                                Maximum="100" 
+                                Value="0"
+                                ValueChanged="MoveXSlider_ValueChanged"/>
+                        <TextBlock x:Name="MoveXValue" Text="0" Width="30" VerticalAlignment="Center" Margin="5,0,10,0"/>
+        
+                        <TextBlock Text="Y:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <Slider x:Name="MoveYSlider" 
+                                Width="100" 
+                                Minimum="-100" 
+                                Maximum="100" 
+                                Value="0"
+                                ValueChanged="MoveYSlider_ValueChanged"/>
+                        <TextBlock x:Name="MoveYValue" Text="0" Width="30" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
 
         </WrapPanel>
 
