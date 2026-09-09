@@ -179,26 +179,6 @@ namespace NA_0lab
             DrawRectangle(_currentRectangle);
         }
 
-        private void MoveLeftButton_Click(object sender, RoutedEventArgs e)
-        {
-            MoveShape(-10, 0);
-        }
-
-        private void MoveRightButton_Click(object sender, RoutedEventArgs e)
-        {
-            MoveShape(10, 0);
-        }
-
-        private void MoveUpButton_Click(object sender, RoutedEventArgs e)
-        {
-            MoveShape(0, -10);
-        }
-
-        private void MoveDownButton_Click(object sender, RoutedEventArgs e)
-        {
-            MoveShape(0, 10);
-        }
-
         private void MoveShape(int deltaX, int deltaY)
         {
             if (_isTriangle && _currentTriangle != null)
